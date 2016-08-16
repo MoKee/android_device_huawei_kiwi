@@ -81,7 +81,9 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HAL_STATIC_LIBRARIES += libhealthd.msm8916
 
 # MK Hardware
-BOARD_HARDWARE_CLASS := hardware/mokee/mkhw
+BOARD_HARDWARE_CLASS += \
+    hardware/mokee/mkhw \
+    $(DEVICE_PATH)/mkhw
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
