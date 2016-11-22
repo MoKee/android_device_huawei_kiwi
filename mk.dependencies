@@ -1,5 +1,9 @@
 [
   {
+    "repository": "android_vendor_huawei_kiwi",
+    "target_path": "vendor/huawei/kiwi"
+  },
+  {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
   },

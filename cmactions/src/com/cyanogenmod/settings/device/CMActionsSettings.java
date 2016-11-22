@@ -22,7 +22,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import org.cyanogenmod.internal.util.FileUtils;
+import org.mokee.internal.util.FileUtils;
 
 public final class CMActionsSettings {
     private static final String TAG = "CMActions";
