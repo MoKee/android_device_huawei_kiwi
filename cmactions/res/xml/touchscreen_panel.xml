@@ -42,13 +42,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@*mokee.platform:string/touchscreen_gesture_extras">
+        android:title="@string/touchscreen_gesture_extras">
 
         <SwitchPreference
             android:key="touchscreen_gesture_haptic_feedback"
             android:persistent="false"
-            android:title="@*mokee.platform:string/touchscreen_gesture_haptic_feedback"
-            android:summary="@*mokee.platform:string/touchscreen_gesture_haptic_feedback_summary" />
+            android:title="@string/touchscreen_gesture_haptic_feedback"
+            android:summary="@string/touchscreen_gesture_haptic_feedback_summary" />
 
     </PreferenceCategory>
+
 </PreferenceScreen>
