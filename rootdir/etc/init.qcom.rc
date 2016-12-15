@@ -41,7 +41,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    symlink /sdcard /mnt/sdcard0
+on post-fs
     symlink /sdcard /storage/sdcard0
 
 on early-boot
@@ -291,7 +291,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-service rmt_storage /sbin/rmt_storage
+service rmt_storage /system/bin/rmt_storage
     class core
     user root
     disabled
@@ -301,7 +301,7 @@ service rmt_storage /sbin/rmt_storage
 service rfs_access /system/bin/rfs_access
    class core
    user root
-   group system net_raw
+   group system net_raw wakelock
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core

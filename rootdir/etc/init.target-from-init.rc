@@ -38,7 +38,7 @@ on post-fs-data
 # right trigger?
     mkdir /data/misc/wifi/load 0775 system system
     mkdir /data/misc/dts 0770 media media
-    symlink /system/etc/srs/srs_processing.cfg /data/misc/dts/srs_processing.cfg 2>/data/log/dts-log
+    symlink /system/etc/srs/srs_processing.cfg /data/misc/dts/srs_processing.cfg
 
     mkdir /data/drm/rights 0770 drm drm
     mkdir /data/drm/widevine 0770 drm drm
@@ -222,6 +222,7 @@ service signinfolistener /system/bin/signinfolistener
 service libqmi_oem_main /sbin/libqmi_oem_main
     class main
     seclabel u:r:libqmi_oem_main:s0
+    group wakelock
 
 service rebootmgr /system/bin/rebootmgr
     class core
@@ -229,12 +230,6 @@ service rebootmgr /system/bin/rebootmgr
     disabled
 
 # disable enable_swap
-
-service chargelog  /sbin/chargelog.sh 2 51200
-    class main
-    root charger
-    disabled
-    seclabel u:r:chargelog:s0
 
 service wifi_aging /system/xbin/wifi_aging
     user root
@@ -275,28 +270,6 @@ service send_data_srv /system/bin/send_data_srv
     group system
     disabled
     oneshot
-
-service mmc_ro_monitor /sbin/huawei_mmc_monitor -f -c
-    user root
-    group root
-    disabled
-    oneshot
-    #seclabel u:r:huawei_mmc_monitor:s0
-
-service mmc_ro_scan /sbin/huawei_mmc_monitor -f -c -d
-    user root
-    group root
-    disabled
-    oneshot
-    #seclabel u:r:huawei_mmc_monitor:s0
-
-on property:debug.rt.emmc.test=1
-    stop mmc_ro_monitor
-    start mmc_ro_monitor
-
-on property:debug.emmc.daemon.test=1
-    stop mmc_ro_scan
-    start mmc_ro_scan
 
 on property:ro.runmode=factory
     start send_data_srv
