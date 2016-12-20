@@ -50,7 +50,6 @@ on fs
 
     wait /dev/block/bootdevice/by-name/modem
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=222,fmask=333
-    write /sys/kernel/boot_adsp/boot 1
     mkdir /log/sdlog 0775 system system
     write /log/sdlog/sd_err.log 0
 
@@ -117,10 +116,6 @@ service audiod /system/bin/audiod
    class late_start
    user system
    group system
-
-on boot
-    start rmt_storage
-    insmod /system/lib/modules/adsprpc.ko
 
 # access permission for secure touch
     chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
