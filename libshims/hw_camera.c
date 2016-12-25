@@ -14,24 +14,10 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "hw_camera_shim"
-#include <cutils/log.h>
-
-#include <dlfcn.h>
 #include <stdio.h>
-
-static int (*__srget_real)(FILE *fp) = NULL;
 
 int __srget(FILE *fp)
 {
-	if (!__srget_real) {
-		__srget_real = dlsym(RTLD_NEXT, "__srget");
-		if (!__srget_real) {
-			ALOGE("Real __srget not found, returning EOF");
-			return EOF;
-		}
-	}
-
-	return __srget_real(fp);
+	return EOF;
 }
 
