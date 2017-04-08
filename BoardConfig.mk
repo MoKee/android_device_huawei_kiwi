@@ -108,6 +108,7 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 # /proc/partitions * 2 * BLOCK_SIZE (512) = size in bytes
@@ -138,6 +139,9 @@ TARGET_RECOVERY_DENSITY := xhdpi
 
 # Release
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+
+# Hardware disk encryption (FDE)
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Release tools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_kiwi
