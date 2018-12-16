@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.doze;
+package org.mokee.settings.doze;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -35,7 +35,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import lineageos.providers.LineageSettings;
+import mokee.providers.MKSettings;
 
 public class SensorsDozeService extends Service {
 
@@ -316,8 +316,8 @@ public class SensorsDozeService extends Service {
                 Context.AUDIO_SERVICE);
         Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
-        boolean enabled = LineageSettings.System.getInt(mContext.getContentResolver(),
-                LineageSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0;
+        boolean enabled = MKSettings.System.getInt(mContext.getContentResolver(),
+                MKSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0;
 
         switch (audioManager.getRingerMode()) {
             case AudioManager.RINGER_MODE_SILENT:

@@ -104,8 +104,8 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
+# MK Hardware
+BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/mkhw
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true

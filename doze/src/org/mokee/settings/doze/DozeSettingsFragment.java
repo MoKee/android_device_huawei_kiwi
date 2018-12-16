@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.doze;
+package org.mokee.settings.doze;
 
 import android.app.Activity;
 import android.app.AlertDialog;
