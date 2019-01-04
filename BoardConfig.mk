@@ -122,7 +122,6 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 67108864
 BOARD_FLASH_BLOCK_SIZE := 131072 # blockdev --getbsz /dev/block/mmcblk0p19
 
 # Power
-# Power
 TARGET_HAS_LEGACY_POWER_STATS := true
 TARGET_HAS_NO_WIFI_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
@@ -163,9 +162,6 @@ BOARD_SEPOLICY_DIRS += \
 # Shims
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/bin/signinfolistener|libshim_signinfolistener.so:\
-    /system/vendor/lib64/libflp.so|libshim_flp.so:\
-    /system/vendor/lib64/liblbs_core.so|libshim_libloc.so:\
-    /system/vendor/lib/libflp.so|libshim_flp.so:\
     /system/vendor/lib/libmmcamera_hdr_gb_lib.so|/system/vendor/lib/libmmqjpeg_codec.so
 
 # Vendor Init
@@ -173,6 +169,9 @@ TARGET_INIT_VENDOR_LIB := libinit_kiwi
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+# Extended Filesystem Support
+TARGET_EXFAT_DRIVER := sdfat
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
