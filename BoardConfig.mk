@@ -107,8 +107,8 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Lineage Hardware
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
+# MK Hardware
+JAVA_SOURCE_OVERLAYS := org.mokee.hardware|$(DEVICE_PATH)/mkhw|**/*.java
 
 # Malloc
 MALLOC_SVELTE := true

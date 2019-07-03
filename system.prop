@@ -139,7 +139,7 @@ ro.telephony.call_ring.multiple=false
 ro.use_data_netmgrd=true
 
 # Security patch level
-ro.lineage.build.vendor_security_patch=2018-02-01
+ro.mk.build.vendor_security_patch=2018-02-01
 
 # Tethering
 sys.usb.rps_mask=10
