@@ -7,7 +7,7 @@ on boot
     chown system system /sys/touch_screen/easy_wakeup_gesture
     chmod 0664 /sys/touch_screen/easy_wakeup_gesture
 
-service touch-hal-1-0 /vendor/bin/hw/vendor.lineage.touch@1.0-service.kiwi
+service touch-hal-1-0 /vendor/bin/hw/vendor.mokee.touch@1.0-service.kiwi
     class hal
     user system
     group system

@@ -196,9 +196,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
-# Lineage hardware
+# MK hardware
 PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.kiwi
+    vendor.mokee.touch@1.0-service.kiwi
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -217,8 +217,8 @@ PRODUCT_PACKAGES += \
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-legacymm \
-    vendor.lineage.livedisplay@2.0-service-sysfs
+    vendor.mokee.livedisplay@2.0-service-legacymm \
+    vendor.mokee.livedisplay@2.0-service-sysfs
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -311,7 +311,7 @@ PRODUCT_COPY_FILES += \
 
 # Trust
 PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
+    vendor.mokee.trust@1.0-service
 
 # USB
 PRODUCT_PACKAGES += \

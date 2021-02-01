@@ -22,14 +22,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
 # Inherit from kiwi device
 $(call inherit-product, device/huawei/kiwi/device.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common MoKee stuff.
+$(call inherit-product, vendor/mokee/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := HONOR
 PRODUCT_DEVICE := kiwi
 PRODUCT_MANUFACTURER := HUAWEI
 PRODUCT_MODEL := KIW-L24
-PRODUCT_NAME := lineage_kiwi
+PRODUCT_NAME := mokee_kiwi
 
 PRODUCT_GMS_CLIENTID_BASE := android-huawei

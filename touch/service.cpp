@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "vendor.lineage.touch@1.0-service.kiwi"
+#define LOG_TAG "vendor.mokee.touch@1.0-service.kiwi"
 
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
@@ -25,10 +25,10 @@
 using ::android::OK;
 using ::android::sp;
 
-using ::vendor::lineage::touch::V1_0::IGloveMode;
-using ::vendor::lineage::touch::V1_0::ITouchscreenGesture;
-using ::vendor::lineage::touch::V1_0::implementation::GloveMode;
-using ::vendor::lineage::touch::V1_0::implementation::TouchscreenGesture;
+using ::vendor::mokee::touch::V1_0::IGloveMode;
+using ::vendor::mokee::touch::V1_0::ITouchscreenGesture;
+using ::vendor::mokee::touch::V1_0::implementation::GloveMode;
+using ::vendor::mokee::touch::V1_0::implementation::TouchscreenGesture;
 
 int main() {
     sp<IGloveMode> gloveMode = new GloveMode();
