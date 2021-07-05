@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 The CyanogenMod Project
- * Copyright (c) 2017 The LineageOS Project
+ * Copyright (c) 2017-2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class PickUpSensor implements SensorEventListener {
 
     public static final int PICK_UP_UNKNOWN = 0;
@@ -40,26 +44,25 @@ public class PickUpSensor implements SensorEventListener {
     private Sensor mPickUpSensor;
     private PickUpListener mPickUpListener;
     private SensorManager mSensorManager;
+    private ExecutorService mExecutorService;
 
     public interface PickUpListener {
         void onEvent();
         void onInit();
     }
 
+    public PickUpSensor(Context context, PickUpListener pickUpListener) {
+        mSensorManager = context.getSystemService(SensorManager.class);
+        mPickUpSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, false);
+        mPickUpListener = pickUpListener;
+
+        mExecutorService = Executors.newSingleThreadExecutor();
+    }
+
+    public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+
     public boolean isPickedUp() {
         return mReady && mState == PICK_UP_TRUE;
-    }
-
-    public PickUpSensor(Context context, SensorManager sensorManager,
-            PickUpListener pickUpListener) {
-        mEnabled = false;
-        reset();
-        mPickUpSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, false);
-        mPickUpListener = pickUpListener;
-        mSensorManager = sensorManager;
-    }
-
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     public void onSensorChanged(SensorEvent event) {
@@ -94,16 +97,19 @@ public class PickUpSensor implements SensorEventListener {
         }
     }
 
-    public boolean isPickUpAbove(float x, float y, float threshold) {
-        return (x < -threshold || x > threshold || y > threshold);
-    }
-
-    public void enable() {
-        if (!mEnabled && mPickUpSensor != null) {
-            reset();
-            mSensorManager.registerListener(this, mPickUpSensor, PICKUP_DELAY, PICKUP_LATENCY);
-            mEnabled = true;
+    public void setEnabled(final boolean enabled) {
+        if (enabled == mEnabled || mPickUpSensor == null) {
+            return;
         }
+        reset();
+        submit(() -> {
+            if (enabled) {
+                mSensorManager.registerListener(this, mPickUpSensor, PICKUP_DELAY, PICKUP_LATENCY);
+            } else {
+                mSensorManager.unregisterListener(this, mPickUpSensor);
+            }
+            mEnabled = enabled;
+        });
     }
 
     public void reset() {
@@ -111,10 +117,11 @@ public class PickUpSensor implements SensorEventListener {
         mState = PICK_UP_UNKNOWN;
     }
 
-    public void disable() {
-        if (mEnabled && mPickUpSensor != null) {
-            mSensorManager.unregisterListener(this, mPickUpSensor);
-            mEnabled = false;
-        }
+    private boolean isPickUpAbove(float x, float y, float threshold) {
+        return (x < -threshold || x > threshold || y > threshold);
+    }
+
+    private Future<?> submit(Runnable runnable) {
+        return mExecutorService.submit(runnable);
     }
 }
